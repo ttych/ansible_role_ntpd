@@ -1,5 +1,0 @@
----
-
-- include_vars:
-    file: "{{ filename }}"
-  ignore_errors: true
