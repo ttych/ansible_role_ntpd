@@ -1,8 +1,6 @@
 ---
 - name: include distribution specific variables
-  include_vars:
-    file: "{{ item }}"
-  ignore_errors: true
+  include: vars_loader.yml filename="{{ item }}"
   loop:
     - "{{ ansible_system }}.yml"
     - "{{ ansible_os_family }}.yml"

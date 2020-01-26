@@ -2,6 +2,10 @@
 
 - name: configure on Linux
   block:
+
+    - debug:
+        msg: "{{ ntpd_packages }}"
+        
     - name: set ntpd servers
       lineinfile:
         path: "{{ ntpd_conf_file }}"
