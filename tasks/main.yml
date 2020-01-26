@@ -1,2 +1,14 @@
 ---
-# tasks file for ansible_role_ntpd
+
+- block:
+    - include_tasks: context.yml
+
+    - include_tasks: install.yml
+
+    - include_tasks: configure.yml
+
+  when: want_ntpd
+
+- name: set has_ntpd
+  set_fact:
+    has_ntpd: "{{ want_ntpd }}"

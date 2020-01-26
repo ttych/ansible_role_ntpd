@@ -1,0 +1,7 @@
+---
+
+- name: install ntpd packages
+  package:
+    name: '{{ ntpd_packages }}'
+    state: 'present'
+  register: ntpd_install

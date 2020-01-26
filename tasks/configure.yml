@@ -1,0 +1,31 @@
+---
+
+- name: configure on Linux
+  block:
+    - name: set ntpd servers
+      lineinfile:
+        path: "{{ ntpd_conf_file }}"
+        regexp: "^pool {{ item.pool }} "
+        line: "pool {{ item.pool }} {{ item.options }}"
+      loop: "{{ ntpd_servers }}"
+      register: t_ntpd_conf
+
+    # - name: set keys file content
+    #   # FIXME
+    #   register: chrony_keys_status
+
+    - name: enable ntpd service
+      service:
+        name: "{{ ntpd_service }}"
+        enabled: yes
+        state: started
+      register: t_ntpd_service
+
+    - name: restart service
+      service:
+        name: "{{ ntpd_service }}"
+        state: restarted
+      when: t_ntpd_conf.changed and not t_ntpd_service.changed
+
+  when: ansible_system == 'Linux'
+
