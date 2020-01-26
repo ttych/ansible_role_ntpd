@@ -1,0 +1,4 @@
+---
+want_ntpd: true
+
+ntpd_packages: []
