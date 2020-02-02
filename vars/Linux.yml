@@ -6,3 +6,4 @@ ntpd_key_file: /etc/chrony/chrony.keys
 ntpd_service: chrony
 ntpd_servers:
   - { pool: ntp.ubuntu.com, options: iburst maxsources 4}
+  - { pool: 2.debian.pool.ntp.org, options: iburst }
